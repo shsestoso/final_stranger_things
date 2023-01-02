@@ -2,6 +2,7 @@ import ReactDOM from 'react-dom/client';
 import React, { useState, useEffect } from 'react';
 import { HashRouter, Routes, Route, Link} from 'react-router-dom';
 import Login from './Login';
+import Register from './Register';
 
 
 const App = ()=> {
@@ -32,32 +33,6 @@ const App = ()=> {
     exchangeTokenForUser();
   }, [])
 
-
-  const register = (ev) => {
-    ev.preventDefault();
-    fetch('https://strangers-things.herokuapp.com/api/2209-FTB-ET-WEB-AM/users/register', {
-        method: "POST",
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          user: {
-            username: registerUsername,
-            password: registerPassword
-          }
-        })
-    })
-      .then(response => response.json())
-      .then(result => {
-        if(!result.success){
-          throw result.error;
-        };
-        console.log(result);
-  })
-      .catch(err => console.log(err));
-
-  }
-
   const logout = () => {
     window.localStorage.removeItem('token');
     setUser({})
@@ -72,19 +47,7 @@ const App = ()=> {
       {
         (!user._id) ? (
       <div> 
-      <form onSubmit = {register}> 
-        <input 
-          placeholder = 'username' 
-          value = {registerUsername}
-          onChange = {ev => setRegisterUsername (ev.target.value)}
-         />
-        <input 
-          placeholder = 'password' 
-          value = {registerPassword}
-          onChange = {ev => setRegisterPassword (ev.target.value)}
-        />
-        <button> Register </button>
-      </form>
+      <Register />
       <Login  exchangeTokenForUser = {exchangeTokenForUser} />
       
       <nav>
