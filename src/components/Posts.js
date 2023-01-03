@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
 import {createPost } from '../api/index';
+import Edit from '../api/Edit'
+
 
 
 const Posts = (props) => {
@@ -11,6 +13,23 @@ const Posts = (props) => {
     const [price, setPrice] = useState('');
     const [location, setLocation] = useState ('');
     const [willDeliver, setWillDeliver] = useState ('');
+
+    const deletePost= (id) => {
+        fetch(`https://strangers-things.herokuapp.com/api/2209-FTB-ET-WEB-AM/posts/${id}`, {
+                method: "DELETE",
+                headers: {
+                     'Content-Type': 'application/json',
+                     'Authorization': `Bearer ${token}`
+                }
+             })
+                .then(response => response.json())
+                .then(result => {
+                 console.log(result);
+                fetchPosts();
+              })
+             .catch(console.error);
+         };
+    
    return (
     <div>
         <h1> Posts </h1>
@@ -53,8 +72,8 @@ const Posts = (props) => {
                     <p> Price: {post.price} </p>
                     <p> Location: {post.location} </p>
                     <p> Will Deliver : {post.willDeliver}</p>
-                   {post.isAuthor ? <button className= 'btns'> Edit </button> : null }
-                   {post.isAuthor ? <button className= 'btns'> Delete </button> : null}
+                   {post.isAuthor ? <button onClick = {()=> Edit ({token, title, description,price,location,willDeliver})}className= 'btns'> Edit </button> : null }
+                   {post.isAuthor ? <button onClick = { () => deletePost(post._id) }className= 'btns'> Delete </button> : null}
         
                 </div>
             )
@@ -64,3 +83,4 @@ const Posts = (props) => {
 }
 
 export default Posts ;
+
