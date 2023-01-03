@@ -8,14 +8,16 @@ const Posts = (props) => {
     const posts = props.posts;
     const token = props.token;
     const user = props.user;
+    const fetchPosts= props.fetchPosts;
     const [title, setTitle] = useState ('');
     const [description, setDescription] = useState ('');
     const [price, setPrice] = useState('');
     const [location, setLocation] = useState ('');
     const [willDeliver, setWillDeliver] = useState ('');
 
-    const deletePost= (id) => {
-        fetch(`https://strangers-things.herokuapp.com/api/2209-FTB-ET-WEB-AM/posts/${id}`, {
+    const deletePost= (_id) => {
+        console.log(_id)
+        fetch(`https://strangers-things.herokuapp.com/api/2209-FTB-ET-WEB-AM/posts/${_id}`, {
                 method: "DELETE",
                 headers: {
                      'Content-Type': 'application/json',
