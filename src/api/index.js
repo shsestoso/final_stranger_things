@@ -4,6 +4,7 @@ export const createPost = async ({
     title, 
     description,
      price, 
+     location,
      willDeliver
     }) => { console.log(token)
     try {
@@ -18,6 +19,7 @@ export const createPost = async ({
                    title: title,
                    description: description,
                    price: price,
+                   location: location,
                    willDeliver: willDeliver,
                }
            })

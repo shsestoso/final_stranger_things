@@ -55,6 +55,10 @@ button{
 }
 
 .myPost{
-  background-color: rgb(203,192,211);
+  background-color: rgb(211, 177, 234);
 }
 
+.btns{
+  flex-direction: row;
+  justify-content: space-between;
+}

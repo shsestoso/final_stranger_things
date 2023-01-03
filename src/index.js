@@ -79,7 +79,7 @@ const fetchPosts = () => {
       <Routes> 
         <Route path= '/' element= {<h1> Home </h1> } />
         <Route path = '/posts' element= {
-           <Posts posts = {posts} token = {token}/>
+           <Posts posts = {posts} token = {token} user= {user}/>
         } /> 
       </Routes>
   </div>
