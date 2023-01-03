@@ -1,11 +1,8 @@
-
 import React, { useState } from 'react';
 
-
-
 const Register = ()=> {
-  const [registerUsername, setRegisterUsername] = useState ('');
-  const [registerPassword, setRegisterPassword] = useState ('');
+  const [username, setUsername] = useState ('');
+  const [password, setPassword] = useState ('');
  
   const register = (ev) => {
     ev.preventDefault();
@@ -16,8 +13,8 @@ const Register = ()=> {
         },
         body: JSON.stringify({
           user: {
-            username: registerUsername,
-            password: registerPassword
+            username: username,
+            password: password
           }
         })
     })
@@ -30,21 +27,19 @@ const Register = ()=> {
   })
       .catch(err => console.log(err));
 
-  }
-
- 
-  return (
+  } 
+return (
    
       <form onSubmit = {register}> 
         <input 
           placeholder = 'username' 
-          value = {registerUsername}
-          onChange = {ev => setRegisterUsername (ev.target.value)}
+          value = {username}
+          onChange = {ev => setUsername (ev.target.value)}
          />
         <input 
           placeholder = 'password' 
-          value = {registerPassword}
-          onChange = {ev => setRegisterPassword (ev.target.value)}
+          value = {password}
+          onChange = {ev => setPassword (ev.target.value)}
         />
         <button> Register </button> 
     </form>

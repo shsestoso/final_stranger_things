@@ -3,13 +3,23 @@ import React, { useState, useEffect } from 'react';
 import { HashRouter, Routes, Route, Link} from 'react-router-dom';
 import Login from './Login';
 import Register from './Register';
+import Posts from './Posts';
 
 
 const App = ()=> {
-  const [registerUsername, setRegisterUsername] = useState ('');
-  const [registerPassword, setRegisterPassword] = useState ('');
-  const [user, setUser] = useState ({})
+  const [user, setUser] = useState ({});
+  const [posts, setPosts] = useState ([]);
 
+const fetchPosts = () => {
+  fetch('https://strangers-things.herokuapp.com/api/2209-FTB-ET-WEB-AM/posts')
+      .then(response => response.json())
+      .then(result => {
+         console.log(result.data.posts);
+         setPosts(result.data.posts)
+     })
+     .catch(console.error);
+
+  }
 
   const exchangeTokenForUser = () => {
     const token = window.localStorage.getItem('token');
@@ -31,6 +41,7 @@ const App = ()=> {
   }
   useEffect (() => {
     exchangeTokenForUser();
+    fetchPosts();
   }, [])
 
   const logout = () => {
@@ -58,6 +69,7 @@ const App = ()=> {
       </Routes> 
     </div> ) : null 
  }
+    <Posts posts = {posts} />
   </div>
 
   );
