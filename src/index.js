@@ -1,9 +1,22 @@
 import ReactDOM from 'react-dom/client';
 import React, { useState, useEffect } from 'react';
-import { HashRouter, Routes, Route, Link} from 'react-router-dom';
+import { useLocation, HashRouter, Routes, Route, Link} from 'react-router-dom';
 import Login from './components/Login'
 import Register from './components/Register';
 import Posts from './components/Posts';
+
+const Nav = (props) => {
+  const posts = props.posts;
+  const location = useLocation()
+  const pathname= location.pathname;
+  console.log(pathname)
+ return ( 
+    <nav> 
+        <Link to= '/' className= {pathname === '/' ? 'selected' : ''} > Home </Link>
+       <Link to= '/posts' className= {pathname.startsWith('/posts') ? 'selected' : ''}> Posts ({posts.length})</Link>
+    </nav>
+  );
+}
 
 
 const App = ()=> {
@@ -59,6 +72,12 @@ const fetchPosts = () => {
   return (
     <div>
       <h1>Stranger Things </h1>
+      <Routes> 
+          <Route path = '/*' element= {
+              <Nav posts = {posts}/>
+             }
+          />
+      </Routes>
       {
         user._id ? <div> Welcome {user.username } <button onClick = {logout}> Logout</button></div> : null
       }
@@ -66,11 +85,15 @@ const fetchPosts = () => {
         (!user._id) ? (
       <div> 
       <Register />
-      <Login  exchangeTokenForUser = { exchangeTokenForUser} />
-      
+      <Login  exchangeTokenForUser = { exchangeTokenForUser} />  
     </div> ) : null 
  }
-    <Posts posts = {posts} />
+      <Routes> 
+        <Route path= '/' element= {<h1> Home </h1> } />
+        <Route path = '/posts' element= {
+           <Posts posts = {posts} />
+        } /> 
+      </Routes>
   </div>
 
   );

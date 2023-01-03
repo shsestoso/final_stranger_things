@@ -9,6 +9,27 @@ h1{
   text-align: center;
   color: rgb(142,154,175);
 }
+
+h3{
+  background-color:  rgb(254,234,250);
+  padding: 0.4rem;
+}
+
+nav{
+  display: flex;
+  justify-content: space-around;
+}
+
+nav a {
+  padding: 0.5rem;
+}
+
+nav a.selected {
+  border: solid 2px  rgb(142,154,175);
+  background-color:  rgb(254,234,250);
+  
+  
+}
 input, button {
   height : 2rem;
 }
@@ -34,5 +55,6 @@ button{
 }
 
 .myPost{
-  background-color: rgb (203,192,211);
+  background-color: rgb(203,192,211);
 }
+
