@@ -1,6 +1,6 @@
 import React from 'react';
-import {createPost } from '../api/';
-import { Link} from 'react-router-dom';
+import {createPost } from '../api/index';
+
 
 const Posts = (props) => {
     const posts = props.posts;

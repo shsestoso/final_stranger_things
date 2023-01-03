@@ -25,6 +25,6 @@ export const createPost = async ({
        console.log(result);
        console.log(response)
     } catch (error) {
-        console.log(error);
+        console.error(error);
     } 
 }   
