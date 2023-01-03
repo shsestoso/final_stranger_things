@@ -1,6 +1,6 @@
 import ReactDOM from 'react-dom/client';
 import React, { useState, useEffect } from 'react';
-import { useLocation, HashRouter, Routes, Route, Link} from 'react-router-dom';
+import {HashRouter, Routes, Route} from 'react-router-dom';
 import Login from './components/Login'
 import Register from './components/Register';
 import Posts from './components/Posts';
@@ -30,7 +30,7 @@ const fetchPosts = () => {
 
   const exchangeTokenForUser = () => {
     const token = window.localStorage.getItem('token');
-    setToken(token);
+    setToken(token)
     if (token ) {
       fetch('https://strangers-things.herokuapp.com/api/2209-FTB-ET-WEB-AM/users/me', {
             headers: {
@@ -73,7 +73,7 @@ const fetchPosts = () => {
         (!user._id) ? (
       <div> 
       <Register />
-      <Login  exchangeTokenForUser = { exchangeTokenForUser} />  
+      <Login  exchangeTokenForUser = { exchangeTokenForUser} setToken= {setToken} />  
     </div> ) : null 
  }
       <Routes> 

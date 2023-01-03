@@ -8,7 +8,10 @@ const Posts = (props) => {
    return (
     <div>
         <h1> Posts </h1>
-        <button onClick = {()=>createPost(token)}> Create Post </button>
+        <form> 
+
+        </form>
+        <button onClick = {()=>createPost({token, title, description, })}> Create Post </button>
         {posts.map( (post) => {
             return (
                 <div key = {post._id} className= {post.isAuthor ? 'singlePost myPost' : 'singlePost'}>

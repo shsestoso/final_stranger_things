@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 
 const Login = (props) => {
   const exchangeTokenForUser = props.exchangeTokenForUser;
+  const setToken = props.setToken;
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -30,8 +31,9 @@ const Login = (props) => {
           throw result.error;
         }
         const token = result.data.token;
+        setToken(token)
         window.localStorage.setItem('token', token);
-        exchangeTokenForUser();
+        
       })
       .catch((err) => console.log(err));
   };
