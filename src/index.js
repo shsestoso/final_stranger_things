@@ -1,7 +1,7 @@
 import ReactDOM from 'react-dom/client';
 import React, { useState, useEffect } from 'react';
 import { HashRouter, Routes, Route, Link} from 'react-router-dom';
-import Login from './Login';
+import Login from './Login'
 import Register from './Register';
 import Posts from './Posts';
 
@@ -9,9 +9,15 @@ import Posts from './Posts';
 const App = ()=> {
   const [user, setUser] = useState ({});
   const [posts, setPosts] = useState ([]);
+  const [token, setToken] = useState(null);
 
 const fetchPosts = () => {
-  fetch('https://strangers-things.herokuapp.com/api/2209-FTB-ET-WEB-AM/posts')
+  fetch('https://strangers-things.herokuapp.com/api/2209-FTB-ET-WEB-AM/posts' , {
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`,
+    },
+  })
       .then(response => response.json())
       .then(result => {
          console.log(result.data.posts);
@@ -23,11 +29,12 @@ const fetchPosts = () => {
 
   const exchangeTokenForUser = () => {
     const token = window.localStorage.getItem('token');
+    setToken(token);
     if (token ) {
       fetch('https://strangers-things.herokuapp.com/api/2209-FTB-ET-WEB-AM/users/me', {
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
+                'Authorization': `Bearer ${token}`,
             },
         })
             .then(response => response.json())
@@ -59,14 +66,8 @@ const fetchPosts = () => {
         (!user._id) ? (
       <div> 
       <Register />
-      <Login  exchangeTokenForUser = {exchangeTokenForUser} />
+      <Login  exchangeTokenForUser = { exchangeTokenForUser} />
       
-      <nav>
-        <Link to='/'>Home</Link>
-      </nav>
-      <Routes>
-        <Route path='/' element= { <div>Home</div>} />
-      </Routes> 
     </div> ) : null 
  }
     <Posts posts = {posts} />
