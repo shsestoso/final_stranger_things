@@ -4,19 +4,7 @@ import { useLocation, HashRouter, Routes, Route, Link} from 'react-router-dom';
 import Login from './components/Login'
 import Register from './components/Register';
 import Posts from './components/Posts';
-
-const Nav = (props) => {
-  const posts = props.posts;
-  const location = useLocation()
-  const pathname= location.pathname;
-  console.log(pathname)
- return ( 
-    <nav> 
-        <Link to= '/' className= {pathname === '/' ? 'selected' : ''} > Home </Link>
-       <Link to= '/posts' className= {pathname.startsWith('/posts') ? 'selected' : ''}> Posts ({posts.length})</Link>
-    </nav>
-  );
-}
+import Nav from './components/Nav';
 
 
 const App = ()=> {
