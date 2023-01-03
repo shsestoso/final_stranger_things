@@ -26,3 +26,13 @@ button{
   color: white;
   font-weight: bold;
 }
+
+.singlePost {
+  border: 2.5px solid rgb(142,154,175);
+  margin: 0.8rem;
+  padding-left: 0.5rem;
+}
+
+.myPost{
+  background-color: rgb (203,192,211);
+}

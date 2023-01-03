@@ -1,9 +1,9 @@
 import ReactDOM from 'react-dom/client';
 import React, { useState, useEffect } from 'react';
 import { HashRouter, Routes, Route, Link} from 'react-router-dom';
-import Login from './Login'
-import Register from './Register';
-import Posts from './Posts';
+import Login from './components/Login'
+import Register from './components/Register';
+import Posts from './components/Posts';
 
 
 const App = ()=> {
@@ -49,7 +49,7 @@ const fetchPosts = () => {
   useEffect (() => {
     exchangeTokenForUser();
     fetchPosts();
-  }, [])
+  }, [token])
 
   const logout = () => {
     window.localStorage.removeItem('token');
