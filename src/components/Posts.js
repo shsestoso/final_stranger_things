@@ -1,10 +1,13 @@
 import React from 'react';
+import {createPost } from '../api/';
 
 const Posts = (props) => {
-    const posts = props.posts
+    const posts = props.posts;
+    const token = props.token;
    return (
     <div>
         <h1> Posts </h1>
+        <button onClick = {createPost}> Create Post </button>
         {posts.map( (post) => {
             return (
                 <div key = {post._id} className= {post.isAuthor ? 'singlePost myPost' : 'singlePost'}>
